@@ -5,9 +5,6 @@ import { Container, ListItem, Content, List, Left, Thumbnail, Body, Button, Righ
  
  
 class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Home',
-  }
   render() {
     const { postsReady, posts } = this.props;
     return <Container>
@@ -17,10 +14,7 @@ class HomeScreen extends Component {
            <ActivityIndicator /> 
           : <Content>
             <List dataArray={posts} renderRow={post => 
-            <ListItem thumbnail>
-                  <Left>
-                    <Thumbnail square source={{ uri: "Image URL" }} />
-                  </Left>
+            <ListItem>
                   <Body>
                     <Text>{post.title}</Text>
                     <Text note numberOfLines={3}>
