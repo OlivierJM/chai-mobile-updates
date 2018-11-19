@@ -1,7 +1,11 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
+import Meteor from 'react-native-meteor'
 import AppNavigator from './navigation/AppNavigator';
+
+Meteor.connect('ws://10.1.0.149:3000/websocket'); //do this only once
+
 
 export default class App extends React.Component {
   state = {
