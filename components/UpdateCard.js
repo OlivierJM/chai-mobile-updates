@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 
 export default class UpdateCard extends Component {
-    static PropTypes = {
+    static propTypes = {
         post: PropTypes.object.isRequired
     }
   render() {
