@@ -12,14 +12,13 @@ import UpdateCard from '../components/UpdateCard'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: 'Home',
   };
 
   render() {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          {/* <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text> */}
         <UpdateCard />
         </ScrollView>
       </View>
