@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import Meteor, { withTracker, MeteorListView } from 'react-native-meteor';
+import UpdateCard from '../components/UpdateCard'
  
 Meteor.connect('ws://10.1.0.149:3000/websocket'); //do this only once
  
 class HomeScreen extends Component {
-  renderRow(todo) {
-    return <Text>{todo.title}</Text>;
+  static navigationOptions = {
+    title: 'Home',
+  };
+  renderRow(post) {
+    return <UpdateCard post={post} />;
   }
   render() {
     const { postsReady } = this.props;

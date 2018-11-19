@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
+import PropTypes from 'prop-types'
+
 
 export default class UpdateCard extends Component {
+    static PropTypes = {
+        post: PropTypes.object.isRequired
+    }
   render() {
+      const { post } = this.props
     return (
       <Container>
         <Content>
           <Card style={{flex: 0}}>
             <CardItem>
               <Left>
-                <Thumbnail source={{uri: 'Image URL'}} />
                 <Body>
-                  <Text>NativeBase</Text>
-                  <Text note>April 15, 2016</Text>
+                  <Text>{post.title}</Text>
+                  <Text note>{post.createdAt}</Text>
                 </Body>
               </Left>
             </CardItem>
             <CardItem>
               <Body>
-                <Image source={{uri: 'Image URL'}} style={{height: 200, width: 200, flex: 1}}/>
+                <Image source={{uri: post.link}} style={{height: 200, width: 200, flex: 1}}/>
                 <Text>
-                Projecting surrounded literature yet delightful alteration but bed men. Open are from 
-                long why cold. If must snug by upon sang loud left. 
-                As me do preference entreaties compliment motionless ye literature. 
+                {post.content}
                 </Text>
               </Body>
             </CardItem>
@@ -31,7 +34,7 @@ export default class UpdateCard extends Component {
               <Left>
                 <Button transparent textStyle={{color: '#87838B'}}>
                   <Icon name="logo-github" />
-                  <Text>1,926 stars</Text>
+                  <Text>{post.note}</Text>
                 </Button>
               </Left>
             </CardItem>
