@@ -17,7 +17,9 @@ import {
 const showMore = () => {
   alert('show me more')
 }
-const HomeScreen = ({ posts, postsReady }) => (
+
+
+const HomeScreen = ({ posts, postsReady, navigate }) => (
   <Container>
     {!postsReady ? (
       <ActivityIndicator />
@@ -34,7 +36,7 @@ const HomeScreen = ({ posts, postsReady }) => (
                 </Text>
               </Body>
               <Right>
-                <Button transparent onPress={showMore}>
+                <Button transparent onPress={navigate}>
                   <Text>More</Text>
                 </Button>
               </Right>

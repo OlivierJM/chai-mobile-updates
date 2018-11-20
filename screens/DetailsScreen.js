@@ -5,13 +5,15 @@ import { Container, ListItem, Content, List, Left, Thumbnail, Body, Button, Righ
 import Home from '../components/HomeContainer' 
 
  
-export default class HomeScreen extends Component {
+export default class DetailScreen extends Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Details',
   }
   render() {
     return (
-      <Home navigate={() => this.props.navigation.navigate('Details')} />
+      <Text>
+        Details Screen
+    </Text>
     )
   }
 }
