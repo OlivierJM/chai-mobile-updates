@@ -17,6 +17,13 @@ export default class Login extends Component {
         phone: '',
         password: ''
     }
+
+    handleLogin = () => {
+        const { phone, password } = this.state
+
+        alert(phone, password) 
+
+    }
   render() {
       const { phone, password } = this.state
     return (
@@ -25,7 +32,7 @@ export default class Login extends Component {
           <Form>
             <Item floatingLabel>
               <Label>Phone Number</Label>
-              <Input value={phone} onChangeText={text => this.setState({phone: text})}/>
+              <Input keyboardType='phone-pad' value={phone} onChangeText={text => this.setState({phone: text})}/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
@@ -33,7 +40,7 @@ export default class Login extends Component {
             </Item>
           </Form>
           <Body>
-              <Button transparent>
+              <Button transparent onPress={this.handleLogin}>
                   <Text>Login</Text>
               </Button>    
           </Body>
