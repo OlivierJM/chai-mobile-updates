@@ -15,6 +15,9 @@ import {
 import Meteor from "react-native-meteor"
 
 export default class Login extends Component {
+    static navigationOptions = {
+        title: 'Login'
+    }
   state = {
     username: "",
     password: "",

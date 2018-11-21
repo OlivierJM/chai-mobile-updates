@@ -14,18 +14,28 @@ import {
 } from "native-base";
 import { resourceContext } from '../App'
 
-// const HomeScreen = ({navigate }) => {
-  
-//   return (
 
-//   )
-// }
 class HomeScreen extends Component{
   static navigationOptions = {
     title: 'Home',
   }
   render(){
-    console.log(Meteor.userId())
+    if (!Meteor.userId()) {
+      return (
+        <Container>
+          <Body style={{
+            flex: 1,
+            justifyContent: 'center'
+          }}>
+            <Button transparent onPress={() => this.props.navigation.navigate('Login')}>
+              <Text>
+                Press here to log in
+              </Text>
+            </Button>
+          </Body>
+        </Container>
+      )
+    }
     return (
       <resourceContext.Consumer>
 

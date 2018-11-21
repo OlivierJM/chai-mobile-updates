@@ -13,7 +13,10 @@ import {
 } from "native-base";
 import { Accounts } from 'react-native-meteor'
 
-export default class Login extends Component {
+export default class Register extends Component {
+    static navigationOptions = {
+        title: 'Register'
+    }
     state = {
         name: '',
         phone : '',
