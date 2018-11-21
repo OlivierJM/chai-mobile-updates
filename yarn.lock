@@ -594,6 +594,16 @@
   version "4.14.118"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.118.tgz#247bab39bfcc6d910d4927c6e06cbc70ec376f27"
 
+"@types/node-fetch@^2.1.2":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.1.4.tgz#093d1beae11541aef25999d70aa09286fd025b1a"
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "10.12.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.9.tgz#a07bfa74331471e1dc22a47eb72026843f7b95c8"
+
 "@types/qs@^6.5.1":
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.5.1.tgz#a38f69c62528d56ba7bd1f91335a8004988d72f7"
@@ -2278,6 +2288,15 @@ expo-sensors@~1.1.0:
     expo-core "~1.2.0"
     expo-sensors-interface "~1.1.0"
     invariant "^2.2.4"
+
+expo-server-sdk@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/expo-server-sdk/-/expo-server-sdk-3.0.1.tgz#2e3100937d8831624611e3175db81b7608a4554f"
+  dependencies:
+    "@types/invariant" "^2.2.29"
+    "@types/node-fetch" "^2.1.2"
+    node-fetch "^2.2.0"
+    promise-limit "^2.7.0"
 
 expo-sms@~1.1.0:
   version "1.1.0"
@@ -4738,6 +4757,10 @@ process-nextick-args@~2.0.0:
 process@~0.5.1:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/process/-/process-0.5.2.tgz#1638d8a8e34c2f440a91db95ab9aeb677fc185cf"
+
+promise-limit@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/promise-limit/-/promise-limit-2.7.0.tgz#eb5737c33342a030eaeaecea9b3d3a93cb592b26"
 
 promise@^7.1.1:
   version "7.3.1"

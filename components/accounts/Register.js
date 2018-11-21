@@ -27,6 +27,12 @@ export default class Register extends Component {
 
     handleRegister = () => {
         const { name, phone, confirmPassword, password } = this.state
+        if (password.trim() !== confirmPassword.trim() || password.length < 6) {
+            this.setState({
+                error: 'double check your password'
+            })
+            return
+        }
         const user = {
             username: phone,
             password,
@@ -40,6 +46,7 @@ export default class Register extends Component {
                 this.setState({
                     error: err.reason
                 })
+                return
             }
             return this.props.navigation.navigate('Home')
         })
@@ -85,7 +92,9 @@ export default class Register extends Component {
             <Button onPress={this.handleRegister}>
                 <Text>Register</Text>
             </Button>    
-            <Text style={{color: 'red'}}>
+          </Body>
+          <Body>
+          <Text style={{color: 'red'}}>
                 {error.length ? error : null}
             </Text>
           </Body>

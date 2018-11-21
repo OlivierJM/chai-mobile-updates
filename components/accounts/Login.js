@@ -7,7 +7,7 @@ import {
   Item,
   Input,
   Label,
-  View,
+  Row,
   Button,
   Text,
   Body
@@ -42,7 +42,7 @@ export default class Login extends Component {
   render() {
     const { username, password, error } = this.state;
     return (
-      <Container>
+      <Container >
         <Content>
           <Form>
             <Item floatingLabel>
