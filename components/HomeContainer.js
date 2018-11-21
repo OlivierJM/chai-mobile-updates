@@ -12,46 +12,63 @@ import {
   Button,
   Right
 } from "native-base";
+import { resourceContext } from '../App'
 
+// const HomeScreen = ({navigate }) => {
+  
+//   return (
 
-const showMore = () => {
-  alert('show me more')
+//   )
+// }
+class HomeScreen extends Component{
+  static navigationOptions = {
+    title: 'Home',
+  }
+  render(){
+    return (
+      <resourceContext.Consumer>
+
+      {   
+        posts => (
+        <Container>
+            {!posts.length ? (
+              <ActivityIndicator />
+            ) : (
+              <Content>
+                <List
+                  dataArray={posts}
+                  renderRow={post => (
+                    <ListItem>
+                      <Body>
+                        <Text>{post.title}</Text>
+                        <Text note numberOfLines={3}>
+                          {post.content}
+                        </Text>
+                      </Body>
+                      <Right>
+                        <Button transparent onPress={() => this.props.navigation.navigate('Details', { post })}>
+                          <Text>More</Text>
+                        </Button>
+                      </Right>
+                    </ListItem>
+                  )}
+                />
+              </Content>
+            )}
+          </Container>
+          
+        )  
+        }
+
+    </resourceContext.Consumer>
+    )
+  }
 }
-
-
-const HomeScreen = ({ posts, postsReady, navigate }) => (
-  <Container>
-    {!postsReady ? (
-      <ActivityIndicator />
-    ) : (
-      <Content>
-        <List
-          dataArray={posts}
-          renderRow={post => (
-            <ListItem>
-              <Body>
-                <Text>{post.title}</Text>
-                <Text note numberOfLines={3}>
-                  {post.content}
-                </Text>
-              </Body>
-              <Right>
-                <Button transparent onPress={navigate}>
-                  <Text>More</Text>
-                </Button>
-              </Right>
-            </ListItem>
-          )}
-        />
-      </Content>
-    )}
-  </Container>
-);
-
-export default withTracker(params => {
-  const handle = Meteor.subscribe("posts");
-  return {
-    postsReady: handle.ready(),
-    posts: Meteor.collection("posts").find()
-  };
-})(HomeScreen);
+export default HomeScreen
+// export default withTracker(params => {
+//   const handle = Meteor.subscribe("posts");
+//   return {
+//     postsReady: handle.ready(),
+//     posts: Meteor.collection("posts").find()
+//   };
+// })(HomeScreen);

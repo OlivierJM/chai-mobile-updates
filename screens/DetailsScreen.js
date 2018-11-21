@@ -1,19 +1,57 @@
-import React, { Component } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
-import Meteor, { withTracker } from 'react-native-meteor';
-import { Container, ListItem, Content, List, Left, Thumbnail, Body, Button, Right } from 'native-base'
-import Home from '../components/HomeContainer' 
+import React, { Component } from "react";
+import { Image } from "react-native";
+import {
+  Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Thumbnail,
+  Text,
+  Button,
+  Icon,
+  Left,
+  Body,
+  Right
+} from "native-base";
 
- 
 export default class DetailScreen extends Component {
   static navigationOptions = {
-    title: 'Details',
-  }
+    title: "Details"
+  };
   render() {
+    const { navigation } = this.props;
+    const post = navigation.getParam("post", {});
+    let Image_Http_URL = { uri: 'https://reactnativecode.com/wp-content/uploads/2017/05/react_thumb_install.png'};
     return (
-      <Text>
-        Details Screen
-    </Text>
-    )
+      <Container>
+        <Content>
+          <Card>
+            <CardItem>
+              <Left>
+                <Body>
+                  <Text>{post.title}</Text>
+                  <Text note>{post.author}</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem cardBody>
+              <Image
+                source={{ uri: post.link }}
+                style={{width: 400, height: 400}}
+              />
+            </CardItem>
+            <CardItem>
+              <Right>
+                <Text>{post.createdAt}</Text>
+              </Right>
+            </CardItem>
+            <CardItem>
+              <Text>{post.content}</Text>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
+    );
   }
 }
