@@ -7,7 +7,7 @@ import {
   Item,
   Input,
   Label, 
-  Row,
+  View,
   Button, 
   Text, Body
 } from "native-base";
@@ -18,11 +18,11 @@ export default class Login extends Component {
       <Container>
         <Content>
           <Form>
-            <Item fixedLabel>
+            <Item floatingLabel>
               <Label>Username</Label>
               <Input />
             </Item>
-            <Item fixedLabel last>
+            <Item floatingLabel last>
               <Label>Password</Label>
               <Input />
             </Item>
@@ -30,6 +30,11 @@ export default class Login extends Component {
           <Body>
               <Button transparent>
                   <Text>Login</Text>
+              </Button>    
+          </Body>
+          <Body>
+              <Button transparent onPress={() => this.props.navigation.navigate('Register')}>
+                  <Text>Register</Text>
               </Button>    
           </Body>
         </Content>
