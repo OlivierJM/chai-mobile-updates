@@ -11,22 +11,33 @@ import {
   Button,
   Text,
   Body
-} from "native-base"
+} from "native-base";
+import Meteor from "react-native-meteor"
 
 export default class Login extends Component {
   state = {
-    phone: "",
-    password: ""
+    username: "",
+    password: "",
+    error: ""
   }
 
   handleLogin = () => {
-    const { phone, password } = this.state
-    // Log the user in and route to Home
-
-    return this.props.navigation.navigate("Home")
-  };
+    const { username, password } = this.state
+    const user = {
+      username
+    }
+    Meteor.loginWithPassword(user, password, err => {
+      if (err) {
+        this.setState({
+          error: err.reason
+        });
+        return;
+      }
+      return this.props.navigation.navigate("Home");
+    })
+  }
   render() {
-    const { phone, password } = this.state;
+    const { username, password, error } = this.state;
     return (
       <Container>
         <Content>
@@ -34,9 +45,9 @@ export default class Login extends Component {
             <Item floatingLabel>
               <Label>Phone Number</Label>
               <Input
-                    keyboardType="phone-pad"
-                    value={phone}
-                    onChangeText={text => this.setState({ phone: text })}
+                keyboardType="phone-pad"
+                value={username}
+                onChangeText={text => this.setState({ username: text })}
               />
             </Item>
             <Item floatingLabel last>
@@ -47,10 +58,10 @@ export default class Login extends Component {
               />
             </Item>
           </Form>
-          <Body style={{marginTop: 25}}>
-                <Button onPress={this.handleLogin}>
-                <Text>Login</Text>
-                </Button>
+          <Body style={{ marginTop: 25 }}>
+            <Button onPress={this.handleLogin}>
+              <Text>Login</Text>
+            </Button>
           </Body>
           <Body>
             <Button
@@ -59,6 +70,7 @@ export default class Login extends Component {
             >
               <Text>Register</Text>
             </Button>
+            <Text style={{ color: "red" }}>{error.length ? error : null}</Text>
           </Body>
         </Content>
       </Container>

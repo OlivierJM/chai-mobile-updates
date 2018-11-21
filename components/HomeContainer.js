@@ -25,6 +25,7 @@ class HomeScreen extends Component{
     title: 'Home',
   }
   render(){
+    console.log(Meteor.userId())
     return (
       <resourceContext.Consumer>
 
