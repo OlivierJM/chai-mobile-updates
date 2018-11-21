@@ -6,12 +6,10 @@ import Home from '../components/HomeContainer'
 
  
 export default class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Home',
-  }
+
   render() {
     return (
-      <Home />
+      <Home/>
     )
   }
 }

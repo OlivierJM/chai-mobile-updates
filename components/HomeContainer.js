@@ -12,44 +12,74 @@ import {
   Button,
   Right
 } from "native-base";
+import { resourceContext } from '../App'
 
 
-const showMore = () => {
-  alert('show me more')
+class HomeScreen extends Component{
+  static navigationOptions = {
+    title: 'Home',
+  }
+  render(){
+    if (!Meteor.userId()) {
+      return (
+        <Container>
+          <Body style={{
+            flex: 1,
+            justifyContent: 'center'
+          }}>
+            <Button transparent onPress={() => this.props.navigation.navigate('Login')}>
+              <Text>
+                Press here to log in
+              </Text>
+            </Button>
+          </Body>
+        </Container>
+      )
+    }
+    return (
+      <resourceContext.Consumer>
+
+      {   
+        posts => (
+        <Container>
+            {!posts.length ? (
+              <ActivityIndicator />
+            ) : (
+              <Content>
+                <List
+                  dataArray={posts}
+                  renderRow={post => (
+                    <ListItem>
+                      <Body>
+                        <Text>{post.title}</Text>
+                        <Text note numberOfLines={3}>
+                          {post.content}
+                        </Text>
+                      </Body>
+                      <Right>
+                        <Button transparent onPress={() => this.props.navigation.navigate('Details', { post })}>
+                          <Text>More</Text>
+                        </Button>
+                      </Right>
+                    </ListItem>
+                  )}
+                />
+              </Content>
+            )}
+          </Container>
+          
+        )  
+        }
+
+    </resourceContext.Consumer>
+    )
+  }
 }
-const HomeScreen = ({ posts, postsReady }) => (
-  <Container>
-    {!postsReady ? (
-      <ActivityIndicator />
-    ) : (
-      <Content>
-        <List
-          dataArray={posts}
-          renderRow={post => (
-            <ListItem>
-              <Body>
-                <Text>{post.title}</Text>
-                <Text note numberOfLines={3}>
-                  {post.content}
-                </Text>
-              </Body>
-              <Right>
-                <Button transparent onPress={showMore}>
-                  <Text>More</Text>
-                </Button>
-              </Right>
-            </ListItem>
-          )}
-        />
-      </Content>
-    )}
-  </Container>
-);
-
-export default withTracker(params => {
-  const handle = Meteor.subscribe("posts");
-  return {
-    postsReady: handle.ready(),
-    posts: Meteor.collection("posts").find()
-  };
-})(HomeScreen);
+export default HomeScreen
+// export default withTracker(params => {
+//   const handle = Meteor.subscribe("posts");
+//   return {
+//     postsReady: handle.ready(),
+//     posts: Meteor.collection("posts").find()
+//   };
+// })(HomeScreen);
