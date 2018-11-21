@@ -14,6 +14,8 @@ const HomeStack = createStackNavigator({
   Details: DetailScreen,
 });
 
+
+
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
