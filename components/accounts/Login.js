@@ -13,18 +13,23 @@ import {
 } from "native-base";
 
 export default class Login extends Component {
+    state = {
+        phone: '',
+        password: ''
+    }
   render() {
+      const { phone, password } = this.state
     return (
       <Container>
         <Content>
           <Form>
             <Item floatingLabel>
-              <Label>Username</Label>
-              <Input />
+              <Label>Phone Number</Label>
+              <Input value={phone} onChangeText={text => this.setState({phone: text})}/>
             </Item>
             <Item floatingLabel last>
               <Label>Password</Label>
-              <Input />
+              <Input value={password} onChangeText={text => this.setState({password: text})}/>
             </Item>
           </Form>
           <Body>
