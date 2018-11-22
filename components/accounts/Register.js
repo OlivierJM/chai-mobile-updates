@@ -84,6 +84,7 @@ export default class Register extends Component {
               <Label>Password</Label>
               <Input
                 value={password}
+                secureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
               />
             </Item>
@@ -91,6 +92,7 @@ export default class Register extends Component {
               <Label>Confirm Password</Label>
               <Input
                 value={confirmPassword}
+                secureTextEntry={true}
                 onChangeText={text => this.setState({ confirmPassword: text })}
               />
             </Item>
