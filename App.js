@@ -77,9 +77,10 @@ const styles = StyleSheet.create({
 
 export default withTracker(params => {
   const handle = Meteor.subscribe("posts");
+  const subReady = Meteor.subscribe("leaders");
   return {
     postsReady: handle.ready(),
     posts: Meteor.collection("posts").find(),
-    leaders: Meteor.collection('leaders').find()
+    leaders: Meteor.collection('leaders').find(),
   };
 })(App)
