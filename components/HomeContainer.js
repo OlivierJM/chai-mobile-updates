@@ -40,7 +40,7 @@ class HomeScreen extends Component{
       <resourceContext.Consumer>
 
       {   
-        posts => (
+        ({posts}) => (
         <Container>
             {!posts.length ? (
               <ActivityIndicator />

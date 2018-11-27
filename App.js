@@ -20,7 +20,7 @@ export class App extends React.Component {
   }
 
   render() {
-    const { posts } = this.props
+    const { posts, leaders } = this.props
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
         <AppLoading
@@ -31,9 +31,7 @@ export class App extends React.Component {
       );
     } else {
       return (
-       <resourceContext.Provider value={
-         posts
-       }>
+       <resourceContext.Provider value={{posts, leaders}}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <AppNavigator />
@@ -81,6 +79,7 @@ export default withTracker(params => {
   const handle = Meteor.subscribe("posts");
   return {
     postsReady: handle.ready(),
-    posts: Meteor.collection("posts").find()
+    posts: Meteor.collection("posts").find(),
+    leaders: Meteor.collection('leaders').find()
   };
 })(App)
