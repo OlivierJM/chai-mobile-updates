@@ -43,7 +43,7 @@ export default class Login extends Component {
     const { username, password, error } = this.state;
     return (
       <Container >
-        <Content>
+        <Content >
           <Form>
             <Item floatingLabel>
               <Label>Phone Number</Label>
@@ -56,6 +56,7 @@ export default class Login extends Component {
             <Item floatingLabel last>
               <Label>Password</Label>
               <Input
+                secureTextEntry={true}
                 value={password}
                 onChangeText={text => this.setState({ password: text })}
               />
