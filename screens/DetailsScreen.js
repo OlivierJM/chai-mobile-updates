@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
+import { Image, Linking } from "react-native";
 import {
   Container,
   Header,
@@ -36,6 +36,23 @@ export default class DetailScreen extends Component {
               </Left>
             </CardItem>
             <CardItem cardBody>
+              <Text onPress={
+                () => Linking.canOpenURL(post.link).then(supported => {
+                  if (!supported) {
+                    console.log('Can\'t handle url: ' + post.link);
+                  } else {
+                    return Linking.openURL(post.link);
+                  }
+                }).catch(err => console.error('An error occurred', err))
+                //  AppLink.maybeOpenURL(post.link, {}).then(() => {
+                  
+                // })
+                // .catch((err) => {
+                //   // handle error
+                // })
+              }>
+                {'Video'}
+              </Text>
               <Image
                 source={{ uri: post.link }}
                 style={{width: 400, height: 400}}
