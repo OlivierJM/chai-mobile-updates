@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
+import { Image, Linking } from "react-native";
 import {
   Container,
   Header,
@@ -22,7 +22,6 @@ export default class DetailScreen extends Component {
   render() {
     const { navigation } = this.props;
     const post = navigation.getParam("post", {});
-    let Image_Http_URL = { uri: 'https://reactnativecode.com/wp-content/uploads/2017/05/react_thumb_install.png'};
     return (
       <Container>
         <Content>
@@ -35,11 +34,28 @@ export default class DetailScreen extends Component {
                 </Body>
               </Left>
             </CardItem>
-            <CardItem cardBody>
-              <Image
+            <CardItem>
+
+              {
+                post.type === 'video' ?
+              <Text onPress={
+                () => Linking.canOpenURL(post.link).then(supported => {
+                  if (!supported) {
+                    alert('Can\'t handle url: ' + post.link);
+                  } else {
+                    return Linking.openURL(post.link);
+                  }
+                }).catch(err => console.error('An error occurred', err))
+              }>
+                {'Click To Open'}
+              </Text>
+              :
+               <Image
                 source={{ uri: post.link }}
                 style={{width: 400, height: 400}}
-              />
+              /> 
+
+              }
             </CardItem>
             <CardItem>
               <Right>
