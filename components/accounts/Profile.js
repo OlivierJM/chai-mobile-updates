@@ -40,9 +40,18 @@ export default class Profile extends Component {
             <CardItem>
               <Body>
                 <Text>
-                  {user.profile.name}
+                  Name: {user.profile.name}
                 </Text>
               </Body>
+              </CardItem>
+              <CardItem>
+              <Body>
+                <Text>
+                 Phone: {user.username}
+                </Text>
+              </Body>
+              </CardItem>
+              <CardItem>
               <Body>
                   <Button onPress={this.logUserOut}>
                       <Text>
