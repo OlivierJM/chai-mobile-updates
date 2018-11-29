@@ -22,7 +22,6 @@ export default class DetailScreen extends Component {
   render() {
     const { navigation } = this.props;
     const post = navigation.getParam("post", {});
-    let Image_Http_URL = { uri: 'https://reactnativecode.com/wp-content/uploads/2017/05/react_thumb_install.png'};
     return (
       <Container>
         <Content>
@@ -44,12 +43,6 @@ export default class DetailScreen extends Component {
                     return Linking.openURL(post.link);
                   }
                 }).catch(err => console.error('An error occurred', err))
-                //  AppLink.maybeOpenURL(post.link, {}).then(() => {
-                  
-                // })
-                // .catch((err) => {
-                //   // handle error
-                // })
               }>
                 {'Video'}
               </Text>
