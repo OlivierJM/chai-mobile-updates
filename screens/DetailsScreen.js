@@ -34,22 +34,28 @@ export default class DetailScreen extends Component {
                 </Body>
               </Left>
             </CardItem>
-            <CardItem cardBody>
+            <CardItem>
+
+              {
+                post.type === 'video' ?
               <Text onPress={
                 () => Linking.canOpenURL(post.link).then(supported => {
                   if (!supported) {
-                    console.log('Can\'t handle url: ' + post.link);
+                    alert('Can\'t handle url: ' + post.link);
                   } else {
                     return Linking.openURL(post.link);
                   }
                 }).catch(err => console.error('An error occurred', err))
               }>
-                {'Video'}
+                {'Click To Open'}
               </Text>
-              <Image
+              :
+               <Image
                 source={{ uri: post.link }}
                 style={{width: 400, height: 400}}
-              />
+              /> 
+
+              }
             </CardItem>
             <CardItem>
               <Right>
