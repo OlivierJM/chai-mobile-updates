@@ -14,7 +14,7 @@ import {
 } from "native-base";
 import { resourceContext } from '../App'
 
-
+// add a date when an announcement was created 
 class HomeScreen extends Component{
   static navigationOptions = {
     title: 'Home',
@@ -25,7 +25,7 @@ class HomeScreen extends Component{
         <Container>
           <Body style={{
             flex: 1,
-            justifyContent: 'center'
+            justifyContent: 'center',
           }}>
             <Button transparent onPress={() => this.props.navigation.navigate('Login')}>
               <Text>

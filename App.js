@@ -5,6 +5,7 @@ import Meteor, { withTracker } from 'react-native-meteor'
 import AppNavigator from './navigation/AppNavigator'
 
 Meteor.connect('ws://10.1.0.149:3000/websocket'); //do this only once
+// Meteor.connect('ws://192.168.1.103:3000/websocket'); //do this only once
 // Meteor.connect('ws://192.168.8.102:3000/websocket'); //do this only once
 const initialContext = {
   posts:[],
@@ -17,11 +18,21 @@ export const resourceContext = createContext(initialContext)
 export class App extends React.Component {
   state = {
     isLoadingComplete: false,
+    loading: true // only used on fonts
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+    });
+    this.setState({ loading: false });
   }
 
   render() {
     const { posts, leaders } = this.props
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+    // if (this.state.loading && !this.props.skipLoadingScreen) {
+    if (this.state.loading) {
       return (
         <AppLoading
           startAsync={this._loadResourcesAsync}
@@ -53,6 +64,8 @@ export class App extends React.Component {
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+        'Roboto': require("native-base/Fonts/Roboto.ttf"),
+        'Roboto_medium': require("native-base/Fonts/Roboto_medium.ttf")
       }),
     ]);
   };
@@ -80,7 +93,7 @@ export default withTracker(params => {
   const subReady = Meteor.subscribe("leaders");
   return {
     postsReady: handle.ready(),
-    posts: Meteor.collection("posts").find(),
+    posts: Meteor.collection("posts", { sort: { createdAt: -1 } }).find(),
     leaders: Meteor.collection('leaders').find(),
   };
 })(App)
