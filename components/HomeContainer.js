@@ -61,23 +61,24 @@ class HomeScreen extends Component{
                       <CardItem>
                         <Right>
                           <Body>
-                            <Text>{post.title}</Text>
+                            <Text>{post.meta.title}</Text>
                           </Body>
                         </Right>
                       </CardItem>
                       <CardItem cardBody>
-                        <Image source={{uri: 'https://avatars2.githubusercontent.com/u/11255454?s=400&u=0706cef517ee93348624c32a124f4d7781ebdf3f&v=4'}} style={{height: 200, width: null, flex: 1}}/>
+                        <Image source={{uri: `http://10.1.0.149:3000/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}`}}
+                           style={{height: 200, width: null, flex: 1}}/>
                       </CardItem>
                       <CardItem>
                         <Body>
                           <Text>
-                            {post.content}
+                            {post.meta.content}
                           </Text>
                         </Body>
                       </CardItem>
                       <CardItem>
                         <Right>
-                          <Text>{post.createdAt && post.createdAt.toLocaleString()}</Text>
+                          <Text>{post.meta.createdAt && post.meta.createdAt.toLocaleString()}</Text>
                         </Right>
                       </CardItem>
                     </Card>

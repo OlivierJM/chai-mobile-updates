@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
 });
 
 export default withTracker(params => {
-  const handle = Meteor.subscribe("posts");
+  const handle = Meteor.subscribe("images");
   const subReady = Meteor.subscribe("leaders");
   return {
     postsReady: handle.ready(),
-    posts: Meteor.collection("posts").find({}, { sort: { createdAt: -1 } }),
+    posts: Meteor.collection("images").find({}, { sort: { createdAt: -1 } }),
     leaders: Meteor.collection('leaders').find(),
   };
 })(App)
