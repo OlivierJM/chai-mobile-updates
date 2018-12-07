@@ -1,19 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, ActivityIndicator, Image } from "react-native";
+import { Text, ActivityIndicator, Image } from "react-native";
 import { resourceContext } from "../App";
 import {
   Container,
-  ListItem,
   Content,
-  List,
+  Card,
+  CardItem,
   Left,
   Body,
   Right,
-  Card,
-  CardItem,
+  List
 } from "native-base";
-
-const baseUrl = 'http://localhost:3000'
+import format from 'date-fns/format'
+import  { styles } from './DetailsScreen'
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
@@ -36,32 +35,32 @@ export default class LinksScreen extends React.Component {
                 <List
                   dataArray={leaders}
                   renderRow={leader => (
-                    <ListItem>
-                      <Card>
-                        <CardItem>
-                          <Left>
-                            <Body>
-                              <Text>{leader.name}</Text>
-                              <Text note>{leader.ext}</Text>
-                            </Body>
-                          </Left>
-                        </CardItem>
-                        <CardItem cardBody>
-                          <Image
-                            source={{ uri: `${baseUrl}/cdn/storage/leaders/${leader._id}/original/${leader._id}.${leader.ext}` }}
-                            style={{ width: 400, height: 400 }}
-                          />
-                        </CardItem>
-                        <CardItem>
-                          <Right>
-                            <Text>{leader.path}</Text>
-                          </Right>
-                        </CardItem>
-                        <CardItem>
-                          <Text>{leader.userId}</Text>
-                        </CardItem>
-                      </Card>
-                    </ListItem>
+
+                    <Card>
+                    <CardItem>
+                      <Left>
+                        <Body>
+                          <Text>{leader.meta.name}</Text>
+                          <Text note>{leader.position}</Text>
+                        </Body>
+                      </Left>
+                    </CardItem>
+                    <CardItem>
+                       <Image
+                        source={{ uri: `http://10.1.0.149:3000/cdn/storage/images/${leader._id}/original/${leader._id}.${leader.ext}` }}
+                        style={styles.image}
+                        esizeMode={'contain'}
+                      /> 
+                    </CardItem>
+                      <CardItem>
+                        <Right>
+                          <Text>{ format(leader.meta.createdAt) }</Text>
+                        </Right>
+                      </CardItem>
+                      <CardItem>
+                      <Text>{leader.meta.content}</Text>
+                    </CardItem>
+                  </Card>
                   )}
                 />
               </Content>
@@ -72,11 +71,3 @@ export default class LinksScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: "#fff"
-  }
-});

@@ -42,13 +42,13 @@ export default class DetailScreen extends Component {
             <CardItem>
 
               {
-                post.type === 'video' ?
+                post.meta.type === 'video' ?
               <Text onPress={
-                () => Linking.canOpenURL(post.link).then(supported => {
+                () => Linking.canOpenURL(post.meta.link).then(supported => {
                   if (!supported) {
-                    alert('Can\'t handle url: ' + post.link);
+                    alert('Can\'t handle url: ' + post.meta.link);
                   } else {
-                    return Linking.openURL(post.link);
+                    return Linking.openURL(post.meta.link);
                   }
                 }).catch(err => console.error('An error occurred', err))
               }>
@@ -60,15 +60,14 @@ export default class DetailScreen extends Component {
                 style={styles.image}
                 esizeMode={'contain'}
               /> 
-
               }
             </CardItem>
-            <CardItem>
-              <Right>
-                <Text>{ format(post.meta.createdAt) }</Text>
-              </Right>
-            </CardItem>
-            <CardItem>
+              <CardItem>
+                <Right>
+                  <Text>{ format(post.meta.createdAt) }</Text>
+                </Right>
+              </CardItem>
+              <CardItem>
               <Text>{post.meta.content}</Text>
             </CardItem>
           </Card>
@@ -80,7 +79,7 @@ export default class DetailScreen extends Component {
 
 const win = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     image: {
         flex: 1,
         alignSelf: 'stretch',
