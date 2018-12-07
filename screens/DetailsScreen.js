@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Image, Linking } from "react-native";
+import { Image, Linking, Dimensions, StyleSheet } from "react-native";
+import format from 'date-fns/format'
 import {
   Container,
   Header,
@@ -21,6 +22,7 @@ export default class DetailScreen extends Component {
     headerStyle: {
       backgroundColor: '#428cf4',
     },
+    headerTintColor: '#fff',
   };
   render() {
     const { navigation } = this.props;
@@ -32,8 +34,8 @@ export default class DetailScreen extends Component {
             <CardItem>
               <Left>
                 <Body>
-                  <Text>{post.title}</Text>
-                  <Text note>{post.author}</Text>
+                  <Text>{post.meta.title}</Text>
+                  <Text note>{post.meta.author}</Text>
                 </Body>
               </Left>
             </CardItem>
@@ -54,19 +56,20 @@ export default class DetailScreen extends Component {
               </Text>
               :
                <Image
-                source={{ uri: post.link }}
-                style={{width: 400, height: 400}}
+                source={{ uri: `http://10.1.0.149:3000/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }}
+                style={styles.image}
+                esizeMode={'contain'}
               /> 
 
               }
             </CardItem>
             <CardItem>
               <Right>
-                <Text>{post.createdAt}</Text>
+                <Text>{ format(post.meta.createdAt) }</Text>
               </Right>
             </CardItem>
             <CardItem>
-              <Text>{post.content}</Text>
+              <Text>{post.meta.content}</Text>
             </CardItem>
           </Card>
         </Content>
@@ -74,3 +77,15 @@ export default class DetailScreen extends Component {
     );
   }
 }
+
+const win = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+    image: {
+        flex: 1,
+        alignSelf: 'stretch',
+        width: win.width,
+        height: win.height,
+    }
+});
+
