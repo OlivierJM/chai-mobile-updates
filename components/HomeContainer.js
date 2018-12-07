@@ -23,7 +23,6 @@ import { resourceContext } from '../App'
 // search bar
 // background color
 // admin on dashboard
-// testing on sabbath on android
 // 
 class HomeScreen extends Component{
   static navigationOptions = {
@@ -31,6 +30,7 @@ class HomeScreen extends Component{
     headerStyle: {
       backgroundColor: '#428cf4',
     },
+    headerTintColor: '#fff',
   }
   render(){
     if (!Meteor.userId()) {

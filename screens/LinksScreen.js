@@ -21,6 +21,7 @@ export default class LinksScreen extends React.Component {
     headerStyle: {
       backgroundColor: '#428cf4',
     },
+    headerTintColor: '#fff',
   };
 
   render() {

@@ -7,8 +7,8 @@ export default class Profile extends Component {
     title: "Profile",
     headerStyle: {
       backgroundColor: '#428cf4',
-      color: '#FFFFFF'
     },
+    headerTintColor: '#fff',
   };
     logUserOut = () => {
         Meteor.logout()
