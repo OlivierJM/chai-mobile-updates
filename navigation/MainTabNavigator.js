@@ -9,10 +9,15 @@ import DetailScreen from '../screens/DetailsScreen';
 import HomeScreen from '../components/HomeContainer'
 import ProfileScreen from '../components/accounts/Profile'
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-  Details: DetailScreen,
-});
+const HomeStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailScreen
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
 
 
 HomeStack.navigationOptions = {

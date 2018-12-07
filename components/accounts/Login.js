@@ -12,6 +12,7 @@ import {
   Text,
   Body
 } from "native-base";
+import { View } from 'react-native'
 import Meteor from "react-native-meteor"
 
 export default class Login extends Component {
@@ -42,11 +43,11 @@ export default class Login extends Component {
   render() {
     const { username, password, error } = this.state;
     return (
-      <Container >
+      <Container style={{ backgroundColor: '#42b6f4' }}>
         <Content >
           <Form>
             <Item floatingLabel>
-              <Label>Phone Number</Label>
+              <Label style={{ color: "white" }}>Phone Number</Label>
               <Input
                 keyboardType="phone-pad"
                 value={username}
@@ -54,7 +55,7 @@ export default class Login extends Component {
               />
             </Item>
             <Item floatingLabel last>
-              <Label>Password</Label>
+              <Label style={{ color: "white" }}>Password</Label>
               <Input
                 secureTextEntry={true}
                 value={password}

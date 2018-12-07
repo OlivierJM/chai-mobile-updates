@@ -3,6 +3,13 @@ import { Container, Content, Card, CardItem, Text, Body, Button } from "native-b
 import Meteor from 'react-native-meteor'
 
 export default class Profile extends Component {
+  static navigationOptions = {
+    title: "Profile",
+    headerStyle: {
+      backgroundColor: '#428cf4',
+    },
+    headerTintColor: '#fff',
+  };
     logUserOut = () => {
         Meteor.logout()
         return this.props.navigation.navigate('Login')

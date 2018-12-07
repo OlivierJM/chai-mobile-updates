@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Image, Linking } from "react-native";
+import { Image, Linking, Dimensions, StyleSheet } from "react-native";
+import format from 'date-fns/format'
 import {
   Container,
   Header,
@@ -17,7 +18,11 @@ import {
 
 export default class DetailScreen extends Component {
   static navigationOptions = {
-    title: "Details"
+    title: "Details",
+    headerStyle: {
+      backgroundColor: '#428cf4',
+    },
+    headerTintColor: '#fff',
   };
   render() {
     const { navigation } = this.props;
@@ -29,21 +34,21 @@ export default class DetailScreen extends Component {
             <CardItem>
               <Left>
                 <Body>
-                  <Text>{post.title}</Text>
-                  <Text note>{post.author}</Text>
+                  <Text>{post.meta.title}</Text>
+                  <Text note>{post.meta.author}</Text>
                 </Body>
               </Left>
             </CardItem>
             <CardItem>
 
               {
-                post.type === 'video' ?
+                post.meta.type === 'video' ?
               <Text onPress={
-                () => Linking.canOpenURL(post.link).then(supported => {
+                () => Linking.canOpenURL(post.meta.link).then(supported => {
                   if (!supported) {
-                    alert('Can\'t handle url: ' + post.link);
+                    alert('Can\'t handle url: ' + post.meta.link);
                   } else {
-                    return Linking.openURL(post.link);
+                    return Linking.openURL(post.meta.link);
                   }
                 }).catch(err => console.error('An error occurred', err))
               }>
@@ -51,19 +56,19 @@ export default class DetailScreen extends Component {
               </Text>
               :
                <Image
-                source={{ uri: post.link }}
-                style={{width: 400, height: 400}}
+                source={{ uri: `http://10.1.0.149:3000/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }}
+                style={styles.image}
+                esizeMode={'contain'}
               /> 
-
               }
             </CardItem>
-            <CardItem>
-              <Right>
-                <Text>{post.createdAt}</Text>
-              </Right>
-            </CardItem>
-            <CardItem>
-              <Text>{post.content}</Text>
+              <CardItem>
+                <Right>
+                  <Text>{ format(post.meta.createdAt) }</Text>
+                </Right>
+              </CardItem>
+              <CardItem>
+              <Text>{post.meta.content}</Text>
             </CardItem>
           </Card>
         </Content>
@@ -71,3 +76,15 @@ export default class DetailScreen extends Component {
     );
   }
 }
+
+const win = Dimensions.get('window');
+
+export const styles = StyleSheet.create({
+    image: {
+        flex: 1,
+        alignSelf: 'stretch',
+        width: win.width,
+        height: 300,
+    }
+});
+
