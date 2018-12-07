@@ -17,7 +17,10 @@ import {
 
 export default class DetailScreen extends Component {
   static navigationOptions = {
-    title: "Details"
+    title: "Details",
+    headerStyle: {
+      backgroundColor: '#428cf4',
+    },
   };
   render() {
     const { navigation } = this.props;

@@ -17,7 +17,10 @@ const baseUrl = 'http://localhost:3000'
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
-    title: "Leaders"
+    title: "Leaders",
+    headerStyle: {
+      backgroundColor: '#428cf4',
+    },
   };
 
   render() {
