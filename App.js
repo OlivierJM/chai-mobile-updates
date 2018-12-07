@@ -93,7 +93,7 @@ export default withTracker(params => {
   const subReady = Meteor.subscribe("leaders");
   return {
     postsReady: handle.ready(),
-    posts: Meteor.collection("images").find({}, { sort: { createdAt: -1 } }),
+    posts: Meteor.collection("images").find({}, { sort: { 'meta.createdAt': -1 } }),
     leaders: Meteor.collection('leaders').find(),
   };
 })(App)

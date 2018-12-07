@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, FlatList, ActivityIndicator, Image } from "react-native";
 import Meteor, { withTracker } from "react-native-meteor";
+import distanceInWordsStrict from 'date-fns/distance_in_words_strict'
+
 import {
   Container,
   ListItem,
@@ -105,10 +107,14 @@ class HomeScreen extends Component{
                       </Left>
                       <Body>
                       <Text>{post.meta.title}</Text>
-                        <Text note>{post.meta.content}</Text>
+                        <Text note numberOfLines={1}>{post.meta.content}</Text>
                       </Body>
                       <Right>
-                      <Text>{post.meta.createdAt && post.meta.createdAt.toLocaleString()}</Text>
+                      <Text>
+                          {
+                            `${distanceInWordsStrict(post.meta.createdAt, new Date())} ago`
+                          }
+                      </Text>
                       </Right>
                 </ListItem>
                   )}
