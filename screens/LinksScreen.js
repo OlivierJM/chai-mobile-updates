@@ -35,30 +35,24 @@ export default class LinksScreen extends React.Component {
                 <List
                   dataArray={leaders}
                   renderRow={leader => (
-
                     <Card>
                     <CardItem>
                       <Left>
                         <Body>
                           <Text>{leader.meta.name}</Text>
-                          <Text note>{leader.position}</Text>
+                          <Text note>{leader.meta.position}</Text>
                         </Body>
                       </Left>
                     </CardItem>
                     <CardItem>
                        <Image
-                        source={{ uri: `http://10.1.0.149:3000/cdn/storage/images/${leader._id}/original/${leader._id}.${leader.ext}` }}
+                        source={{ uri: `http://10.1.0.149:3000/cdn/storage/leaders/${leader._id}/original/${leader._id}.${leader.ext}` }}
                         style={styles.image}
                         esizeMode={'contain'}
                       /> 
                     </CardItem>
                       <CardItem>
-                        <Right>
-                          <Text>{ format(leader.meta.createdAt) }</Text>
-                        </Right>
-                      </CardItem>
-                      <CardItem>
-                      <Text>{leader.meta.content}</Text>
+                        <Text>{leader.meta.department}</Text>
                     </CardItem>
                   </Card>
                   )}
