@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'stretch',
         width: win.width,
-        height: win.height,
+        height: 300,
     }
 });
 
