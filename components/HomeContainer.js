@@ -28,6 +28,9 @@ import { resourceContext } from '../App'
 class HomeScreen extends Component{
   static navigationOptions = {
     title: 'Home',
+    headerStyle: {
+      backgroundColor: '#428cf4',
+    },
   }
   render(){
     if (!Meteor.userId()) {
