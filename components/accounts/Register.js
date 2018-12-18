@@ -12,8 +12,7 @@ import {
   Text,
   Body
 } from "native-base";
-import { Accounts } from "react-native-meteor";
-import numbers from "../../numbers";
+import Meteor from "react-native-meteor";
 
 export default class Register extends Component {
   static navigationOptions = {
@@ -35,12 +34,7 @@ export default class Register extends Component {
       });
       return;
     }
-    if (!numbers.includes(phone)) {
-      this.setState({
-        error: "Phone is not verified, register with the clerk"
-      });
-      return;
-    }
+  
     const user = {
       username: phone,
       password,
@@ -49,14 +43,14 @@ export default class Register extends Component {
       }
     };
     // register the user and take them to the home page
-    Accounts.createUser(user, err => {
+    Meteor.call('addUser', user, err => {
       if (err) {
         this.setState({
           error: err.reason
         });
         return;
       }
-      return this.props.navigation.navigate("Home");
+      return this.props.navigation.navigate("Login");
     });
   };
   render() {
@@ -110,3 +104,10 @@ export default class Register extends Component {
     );
   }
 }
+
+// export default withTracker(() => {
+//   Meteor.subscribe('numbers')
+//   return {
+//     numbers: Meteor.Collection('numbers').find()
+//   }
+// })(Register)

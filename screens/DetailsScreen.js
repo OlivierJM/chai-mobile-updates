@@ -15,6 +15,7 @@ import {
   Body,
   Right
 } from "native-base";
+import SERVER_URL from '../config'
 
 export default class DetailScreen extends Component {
   static navigationOptions = {
@@ -56,7 +57,7 @@ export default class DetailScreen extends Component {
               </Text>
               :
                <Image
-                source={{ uri: `http://10.1.0.149:3000/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }}
+                source={{ uri: `http://${SERVER_URL}/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }}
                 style={styles.image}
                 esizeMode={'contain'}
               /> 
