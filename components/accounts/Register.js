@@ -12,8 +12,8 @@ import {
   Text,
   Body
 } from "native-base";
-import { Accounts } from "react-native-meteor";
-import numbers from "../../numbers";
+import Meteor, { Accounts, withTracker } from "react-native-meteor";
+import  numbers  from '../../numbers'
 
 export default class Register extends Component {
   static navigationOptions = {
@@ -35,7 +35,8 @@ export default class Register extends Component {
       });
       return;
     }
-    if (!numbers.includes(phone)) {
+    // const { numbers } = this.props
+    if (numbers.length && !numbers.includes(phone)) {
       this.setState({
         error: "Phone is not verified, register with the clerk"
       });
@@ -110,3 +111,10 @@ export default class Register extends Component {
     );
   }
 }
+
+// export default withTracker(() => {
+//   Meteor.subscribe('numbers')
+//   return {
+//     numbers: Meteor.Collection('numbers').find()
+//   }
+// })(Register)

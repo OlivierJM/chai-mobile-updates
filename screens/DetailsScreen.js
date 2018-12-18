@@ -56,7 +56,7 @@ export default class DetailScreen extends Component {
               </Text>
               :
                <Image
-                source={{ uri: `http://10.1.0.149:3000/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }}
+                source={{ uri: `http://68.183.68.55/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }}
                 style={styles.image}
                 esizeMode={'contain'}
               /> 

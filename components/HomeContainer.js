@@ -64,7 +64,7 @@ class HomeScreen extends Component{
                   renderRow={post => (
                   <ListItem avatar onPress={() => this.props.navigation.navigate('Details', { post })}>
                       <Left>
-                        <Thumbnail source={{ uri: `http://10.1.0.149:3000/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }} />
+                        <Thumbnail source={{ uri: `http://68.183.68.55/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }} />
                       </Left>
                       <Body>
                       <Text>{post.meta.title}</Text>

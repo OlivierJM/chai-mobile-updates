@@ -3,14 +3,16 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import Meteor, { withTracker } from 'react-native-meteor'
 import AppNavigator from './navigation/AppNavigator'
+import SERVER_URL from './config.js'
 
-Meteor.connect('ws://10.1.0.149:3000/websocket'); //do this only once
-// Meteor.connect('ws://192.168.1.103:3000/websocket'); //do this only once
+Meteor.connect(`ws://${SERVER_URL}/websocket`); //do this only once
+// Meteor.connect('ws://68.183.68.55/websocket'); //do this only once
 // Meteor.connect('ws://192.168.8.102:3000/websocket'); //do this only once
 const initialContext = {
   posts:[],
   leaders: [],
   departments: [],
+  numbers: []
 }
 
 export const resourceContext = createContext(initialContext)
@@ -30,7 +32,7 @@ export class App extends React.Component {
   }
 
   render() {
-    const { posts, leaders } = this.props
+    const { posts, leaders, numbers } = this.props
     // if (this.state.loading && !this.props.skipLoadingScreen) {
     if (this.state.loading) {
       return (
@@ -42,7 +44,7 @@ export class App extends React.Component {
       );
     } else {
       return (
-       <resourceContext.Provider value={{posts, leaders}}>
+       <resourceContext.Provider value={{posts, leaders, numbers}}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <AppNavigator />
@@ -95,5 +97,6 @@ export default withTracker(params => {
     postsReady: handle.ready(),
     posts: Meteor.collection("images").find({}, { sort: { 'meta.createdAt': -1 } }),
     leaders: Meteor.collection('leaders').find(),
+    numbers: Meteor.collection('phoneNumbers').find(),
   };
 })(App)
