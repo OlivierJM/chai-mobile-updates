@@ -57,7 +57,7 @@ export default class Register extends Component {
         });
         return;
       }
-      return this.props.navigation.navigate("Home");
+      return this.props.navigation.navigate("Login");
     });
   };
   render() {
