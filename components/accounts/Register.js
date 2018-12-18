@@ -36,12 +36,12 @@ export default class Register extends Component {
       return;
     }
     // const { numbers } = this.props
-    if (numbers.length && !numbers.includes(phone)) {
-      this.setState({
-        error: "Phone is not verified, register with the clerk"
-      });
-      return;
-    }
+    // if (numbers.length && !numbers.includes(phone)) {
+    //   this.setState({
+    //     error: "Phone is not verified, register with the clerk"
+    //   });
+    //   return;
+    // }
     const user = {
       username: phone,
       password,
@@ -50,7 +50,7 @@ export default class Register extends Component {
       }
     };
     // register the user and take them to the home page
-    Accounts.createUser(user, err => {
+    Meteor.call('addUser', user, err => {
       if (err) {
         this.setState({
           error: err.reason
