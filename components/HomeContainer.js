@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Text, ActivityIndicator, Image } from "react-native";
-import Meteor, { withTracker } from "react-native-meteor";
+import { Text, ActivityIndicator  } from "react-native";
+import Meteor from "react-native-meteor";
 import distanceInWordsStrict from 'date-fns/distance_in_words_strict'
 import SERVER_URL from '../config'
 
@@ -14,9 +14,6 @@ import {
   Body,
   Button,
   Right,
-  Card,
-  Icon,
-  CardItem
 } from "native-base";
 import { resourceContext } from '../App'
 

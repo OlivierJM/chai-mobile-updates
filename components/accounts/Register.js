@@ -12,8 +12,7 @@ import {
   Text,
   Body
 } from "native-base";
-import Meteor, { Accounts, withTracker } from "react-native-meteor";
-import  numbers  from '../../numbers'
+import Meteor from "react-native-meteor";
 
 export default class Register extends Component {
   static navigationOptions = {
@@ -35,13 +34,7 @@ export default class Register extends Component {
       });
       return;
     }
-    // const { numbers } = this.props
-    // if (numbers.length && !numbers.includes(phone)) {
-    //   this.setState({
-    //     error: "Phone is not verified, register with the clerk"
-    //   });
-    //   return;
-    // }
+  
     const user = {
       username: phone,
       password,
