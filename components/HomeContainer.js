@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, ActivityIndicator, Image } from "react-native";
+import { Text, ActivityIndicator, Image } from "react-native";
 import Meteor, { withTracker } from "react-native-meteor";
 import distanceInWordsStrict from 'date-fns/distance_in_words_strict'
+import SERVER_URL from '../config'
 
 import {
   Container,
@@ -64,7 +65,7 @@ class HomeScreen extends Component{
                   renderRow={post => (
                   <ListItem avatar onPress={() => this.props.navigation.navigate('Details', { post })}>
                       <Left>
-                        <Thumbnail source={{ uri: `http://68.183.68.55/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }} />
+                        <Thumbnail source={{ uri: `http://${SERVER_URL}/cdn/storage/images/${post._id}/original/${post._id}.${post.ext}` }} />
                       </Left>
                       <Body>
                       <Text>{post.meta.title}</Text>
