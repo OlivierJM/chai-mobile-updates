@@ -13,6 +13,7 @@ import {
 } from "native-base";
 import format from 'date-fns/format'
 import  { styles } from './DetailsScreen'
+import SERVER_URL from '../config'
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
@@ -46,7 +47,7 @@ export default class LinksScreen extends React.Component {
                     </CardItem>
                     <CardItem>
                        <Image
-                        source={{ uri: `http://68.183.68.55/cdn/storage/leaders/${leader._id}/original/${leader._id}.${leader.ext}` }}
+                        source={{ uri: `http://${SERVER_URL}/cdn/storage/leaders/${leader._id}/original/${leader._id}.${leader.ext}` }}
                         style={styles.image}
                         esizeMode={'contain'}
                       /> 
