@@ -6,25 +6,38 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { createContext, Component } from 'react'
+import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native'
+import Meteor, { withTracker } from 'react-native-meteor'
+// import AppNavigator from './navigation/AppNavigator'
+import SERVER_URL from './config.js'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+
+// Meteor.connect(`wss://${SERVER_URL}/websocket`); // only for production
+Meteor.connect(`ws://${SERVER_URL}/websocket`); // only for development
+
+const initialContext = {
+  posts:[],
+  leaders: [],
+  departments: [],
+  numbers: []
+}
+
+export const resourceContext = createContext(initialContext)
+
 
 type Props = {};
-export default class App extends Component<Props> {
+export class App extends Component<Props> {
   render() {
+    const { posts, leaders, numbers } = this.props
     return (
+      <resourceContext.Provider value={{posts, leaders, numbers}}>
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+        <Text>Hello There</Text>
+        {/* <AppNavigator /> */}
       </View>
+     </resourceContext.Provider> 
     );
   }
 }
@@ -32,18 +45,20 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    backgroundColor: '#fff',
   },
 });
+
+
+
+export default withTracker(params => {
+  const handle = Meteor.subscribe("images");
+  const subReady = Meteor.subscribe("leaders");
+  return {
+    postsReady: handle.ready(),
+    posts: Meteor.collection("images").find({}, { sort: { 'meta.createdAt': -1 } }),
+    leaders: Meteor.collection('leaders').find(),
+    numbers: Meteor.collection('phoneNumbers').find(),
+  };
+})(App)
+
