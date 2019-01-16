@@ -9,7 +9,7 @@
 import React, { createContext, Component } from 'react'
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native'
 import Meteor, { withTracker } from 'react-native-meteor'
-// import AppNavigator from './navigation/AppNavigator'
+import AppNavigator from './navigation/AppNavigator'
 import SERVER_URL from './config.js'
 
 
@@ -34,8 +34,8 @@ export class App extends Component<Props> {
       <resourceContext.Provider value={{posts, leaders, numbers}}>
       <View style={styles.container}>
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <Text>Hello There</Text>
-        {/* <AppNavigator /> */}
+        {/* <Text>Hello There</Text> */}
+        <AppNavigator />
       </View>
      </resourceContext.Provider> 
     );
