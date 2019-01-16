@@ -8,13 +8,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "16.6.3",
-    "react-native": "0.57.8",
     "date-fns": "^1.29.0",
     "expo-server-sdk": "^3.0.1",
     "native-base": "^2.8.1",
     "prop-types": "^15.6.2",
+    "react": "16.6.3",
+    "react-native": "0.57.8",
     "react-native-meteor": "^1.4.0",
+    "react-native-vector-icons": "^6.1.0",
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {
